@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+<body>
+    <script>
+        var Module = {
+          onRuntimeInitialized: function() {
+            my_add = Module.cwrap('my_add', 'number', ['number', 'number'])
+            alert('1 + 2 = ' + my_add(1, 2));
+          },
+        };
+    </script>
+    <script async type="text/javascript" src="index.js"></script>
+</body>
+</html>
