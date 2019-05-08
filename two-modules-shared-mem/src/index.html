@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<body>
+    <script type="text/javascript" src="fill_array.js"></script>
+    <script type="text/javascript" src="calc_sum.js"></script>
+
+    <script>
+
+      var TOTAL_MEMORY = 16777216;
+      var WASM_PAGE_SIZE = 65536;
+      var wasmMemory = new WebAssembly.Memory({ 'initial': TOTAL_MEMORY / WASM_PAGE_SIZE, 'maximum': TOTAL_MEMORY / WASM_PAGE_SIZE });
+      var buffer = wasmMemory.buffer;
+
+      function wasmInstantiator(wasmBinary) {
+          return (info, receiveInstance) => {
+            var importObject = Object.assign({}, info);
+            importObject['env']['memory'] = wasmMemory;
+            WebAssembly.instantiateStreaming(fetch(wasmBinary, { credentials: 'same-origin' }), importObject)
+              .then((output) => { receiveInstance(output['instance']); },
+                    (err) => { console.error('wasm streaming compile failed: ' + err);});
+            return {};
+          };
+      };
+
+    </script>
+
+    <script>
+          
+        var wasmModules = {
+          fill_array: FILL_ARRAY_MODULE( { instantiateWasm: wasmInstantiator('fill_array.wasm') , TOTAL_MEMORY, buffer } ),
+          calc_sum:   CALC_SUM_MODULE( { instantiateWasm: wasmInstantiator('calc_sum.wasm') , TOTAL_MEMORY, buffer } )
+        };
+
+        function fill_array_and_sum_it(fill_array_module, calc_sum_module) {
+          var n = 10;
+          var ptr_from_wasm = fill_array_module.ccall('fill_array', 'number', [], [n]);
+          var sum = calc_sum_module.ccall('calc_sum', 'number', ['number','number'], [ptr_from_wasm, n]);
+          alert('The sum of all number from 0 to ' + (n-1) + " is " + sum);
+        };
+
+        wasmModules.fill_array.then( (fill_array_module) => {
+          wasmModules.calc_sum.then( (calc_sum_module) => {
+            fill_array_and_sum_it(fill_array_module, calc_sum_module);
+          });
+        });
+
+    </script>
+</body>
+</html>
