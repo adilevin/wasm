@@ -10,7 +10,7 @@
 | direct-add | Calling a simple C function directly without ccall/cwrap |
 | embind-add | Calling a simple C++ function using embind |
 | embind-greet | Calling a C++ function that gets and returns a string using embind |
-| malloc | Measuring the actual consumption of dyanmic allocations |
+| malloc | Measuring the actual consumption of dynamic allocations |
 
 ## Project structure
  
