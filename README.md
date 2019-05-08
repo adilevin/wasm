@@ -11,6 +11,8 @@
 | embind-add | Calling a simple C++ function using embind |
 | embind-greet | Calling a C++ function that gets and returns a string using embind |
 | malloc | Measuring the actual consumption of dynamic allocations |
+| two-modules | Instantiating two WASM modules from one app |
+| two-modules-shared-mem | Instantiating two WASM modules with shared memory |
 
 ## Project structure
  
