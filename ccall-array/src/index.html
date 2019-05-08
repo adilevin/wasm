@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<body>
+    <script>
+        var Module = {
+          onRuntimeInitialized: function() {
+            var fill_array = Module.cwrap('fill_array', 'number', [])
+            var n = 16;
+            var ptr_from_wasm = fill_array(n);
+            var js_array = Module.HEAPU8.subarray(ptr_from_wasm, ptr_from_wasm + n);
+            alert(js_array);
+          },
+        };
+    </script>
+    <script async type="text/javascript" src="index.js"></script>
+</body>
+</html>
