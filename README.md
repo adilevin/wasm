@@ -21,11 +21,13 @@ Every project has two folders:
 | src    | Source files |
 | build  | Powershell build script & CMake config |
 
-## Prerequisites (on Windows)
+## Build instrsuctions (on Windows)
+
+### Prerequisites
 
 -  Run [Docker For Windows](https://docs.docker.com/docker-for-windows/) (required for invoking Emscripten)
 
-## How to build and run a project
+### How to build and run
 
 - Go to `build` folder and run `build_and_run.ps1` using PowerShell
 - Navigate to [http://localhost:6931](http://localhost:6931)
