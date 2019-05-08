@@ -12,13 +12,14 @@
           var js_array = fill_array_module.HEAP32.subarray(ptr_from_wasm/4, ptr_from_wasm/4 + n);
           var buffer = calc_sum_module._malloc(js_array.length * js_array.BYTES_PER_ELEMENT);
           calc_sum_module.HEAP32.set(js_array, buffer >> 2);
-          var sum = calc_sum_module.ccall('calc_sum', 'number', ['number','number'], [buffer, n]);//  calc_sum(buffer, n);
+          var sum = calc_sum_module.ccall('calc_sum', 'number', ['number','number'], [buffer, n]);
           calc_sum_module._free(buffer);
           alert(js_array.join('+') + " = " + sum);
         };
 
         var instantiate_calc_sum = CALC_SUM_MODULE();
-        var instantiate_fill_array = FILL_ARRAY_MODULE();        
+        var instantiate_fill_array = FILL_ARRAY_MODULE();
+        
         instantiate_fill_array.then( (fill_array_module) => {
           instantiate_calc_sum.then( (calc_sum_module) => {
             fill_array_and_sum_it(fill_array_module, calc_sum_module);
