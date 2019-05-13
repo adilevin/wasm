@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<body>
+    <script>
+        var Module = {
+          onRuntimeInitialized: function() {
+            var algorithm_with_bug = Module.cwrap('algorithm_with_bug', 'number', [])
+            var ptr_from_wasm = algorithm_with_bug();
+            alert('Success');
+          },
+        };
+    </script>
+    <script async type="text/javascript" src="index.js"></script>
+</body>
+</html>
