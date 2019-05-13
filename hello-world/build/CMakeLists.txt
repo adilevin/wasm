@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.9)
-project (add)
+project (hello-world)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY .)
 set(SRC_DIR ../src)
