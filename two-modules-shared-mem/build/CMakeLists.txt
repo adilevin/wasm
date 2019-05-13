@@ -18,4 +18,4 @@ add_executable(calc_sum.js ${SRC_DIR}/calc_sum.cpp)
 set_target_properties(calc_sum.js 
     PROPERTIES LINK_FLAGS "-s EXPORTED_FUNCTIONS='[\"_calc_sum\"]' -s EXPORT_NAME='CALC_SUM_MODULE'")
 
-configure_file(${SRC_DIR}/index.html index.html COPYONLY)
+file(COPY ${SRC_DIR}/index.html DESTINATION ../target/) # This enables to serve index.html from the target folder
