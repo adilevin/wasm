@@ -12,4 +12,5 @@ set(CMAKE_CXX_COMPILER em++)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(index.js ${ALL_CPP_FILES})
-configure_file(${SRC_DIR}/index.html index.html COPYONLY)
+
+file(COPY ${SRC_DIR}/index.html DESTINATION ../target/) # This enables to serve index.html from the target folder
