@@ -13,6 +13,7 @@
 | malloc | Measuring the actual consumption of dynamic allocations |
 | two-modules | Instantiating two WASM modules from one app |
 | two-modules-shared-mem | Instantiating two WASM modules with shared memory |
+| source-maps | Enabling source-maps for debugging in the browser |
 
 ## Project structure
  
