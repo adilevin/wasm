@@ -5,7 +5,7 @@ $exec_cmd   = "docker run --name emrun -p 6931:6931 -v ${project_root}:/src -w /
 function Run {
     Write-Output " "
     Write-Output "$args"
-    Invoke-Expression "$docker_build $args" | ForEach-Object {'  ' + $_ }
+    Invoke-Expression "$args" | ForEach-Object {'  ' + $_ }
 }
 
 mkdir ../target 2> $null 1>$null
