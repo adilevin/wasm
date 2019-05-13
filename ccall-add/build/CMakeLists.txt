@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.9)
-project (add)
+project (ccall-add)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY .)
 set(SRC_DIR ../src)
@@ -11,4 +11,5 @@ set(CMAKE_CXX_FLAGS "-s EXPORTED_FUNCTIONS='[\"_my_add\"]' -s EXTRA_EXPORTED_RUN
 set(CMAKE_CXX_COMPILER em++)
 
 add_executable(index.js ${ALL_CPP_FILES})
-configure_file(${SRC_DIR}/index.html index.html COPYONLY)
+
+file(COPY ${SRC_DIR}/index.html DESTINATION ../target/) # This enables to serve index.html from the target folder
