@@ -1,6 +1,8 @@
-# WASM - Collection of Web Assembly projects demonstrating Javascript interacting with C/C++
+# WASM - Collection of small WASM-Emscripten samples
 
 ## Projects
+
+Each of the following is a standalone project:
 
 | Project | Description |
 | ------- | ----------- |
