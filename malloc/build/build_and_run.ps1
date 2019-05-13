@@ -3,17 +3,13 @@ $build_cmd = "docker run -v ${project_root}:/src -w /src/target -u emscripten tr
 $exec_cmd   = "docker run --name emrun -p 6931:6931 -v ${project_root}:/src -w /src/target -u emscripten trzeci/emscripten"
 
 function Run {
-    echo " "
-    echo ==================================================
-    echo "$args"
-    echo --------------------
-    
-    Invoke-Expression "$docker_build $args"
+    Write-Output " "
+    Write-Output "$args"
+    Invoke-Expression "$args" | ForEach-Object {'  ' + $_ }
 }
 
 mkdir ../target 2> $null 1>$null
 Run $build_cmd cmake ../build
-Run $build_cmd make clean
 Run $build_cmd make
 
 docker rm -f emrun > $null
