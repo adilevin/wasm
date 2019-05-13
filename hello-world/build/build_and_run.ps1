@@ -13,7 +13,6 @@ function Run {
 
 mkdir ../target 2> $null 1>$null
 Run $build_cmd cmake ../build
-Run $build_cmd make clean
 Run $build_cmd make
 
 docker rm -f emrun > $null
